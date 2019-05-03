@@ -3,10 +3,16 @@ const users = require('./data');
 const getEmail = require('./getEmail');
 const app = express();
 
+
+app.use(express.static('public'));
+
+
+
 app.get('/getemail', (req, res)=>{
     const name = req.query.name;
+    const phone = req.query.phone;
     const email = getEmail(users, name)
-    res.send(email);
+    res.send(`Your email is ${email} and your phone # is ${phone}`);
 });
 
 
